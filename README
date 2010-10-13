@@ -1,0 +1,10 @@
+Probably not of use to anyone, inspired by this screencast by
+the lovely Vimcasts.org
+
+http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+
+To get the configs working on another machine, you need to 
+symlink the vimrc files:
+
+ln -s ~/.vim/vimrc ~/.vimrc
+ln -s ~/.vim/gvimrc ~/.gvimrc
