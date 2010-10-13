@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/andrew/work/Creativenvironment/vendor/plugins/js_rest_rails/lib/app'
+let g:netrw_dirhist_2='/Users/andrew/work/Creativenvironment/vendor/plugins/js_rest_rails/lib/app/helpers'
+let g:netrw_dirhist_3='/Users/andrew/work/Creativenvironment/public/javascripts/jobs'
+let g:netrw_dirhist_4='/Users/andrew/work/Creativenvironment/public/javascripts'
+let g:netrw_dirhist_5='/Users/andrew/work/Creativenvironment/app/helpers'

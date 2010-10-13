@@ -1,0 +1,2 @@
+
+getscript.vba: call delete('/Users/andrew/.vim/plugin/getscriptPlugin.vim')|call delete('/Users/andrew/.vim/autoload/getscript.vim')|call delete('/Users/andrew/.vim/GetLatest/GetLatestVimScripts.dist')|call delete('/Users/andrew/.vim/doc/pi_getscript.txt')
