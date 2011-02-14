@@ -90,3 +90,15 @@ endif
 
 " Always start on the first line in git commits
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+
+:silent exe "g:flog_enable"
+
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>

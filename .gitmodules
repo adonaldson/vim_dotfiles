@@ -24,7 +24,10 @@
 	url = git://github.com/mattn/gist-vim.git
 [submodule "bundle/gist"]
 	path = bundle/gist
-	url = git://github.com/vim-scripts/Gist.vim.git
+	url = git://github.com/mattn/gist-vim.git
 [submodule "bundle/haml"]
 	path = bundle/haml
 	url = git://github.com/tpope/vim-haml.git
+[submodule "bundle/flog"]
+	path = bundle/flog
+	url = https://github.com/fousa/vim-flog.git
