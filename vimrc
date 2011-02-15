@@ -76,6 +76,8 @@ if &t_Co > 2 || has("gui_running")
   "colorscheme tictoc
   colorscheme blackboard
   syntax on
+
+  set go-=T
 endif
 
 map <C-a> :Ack 
