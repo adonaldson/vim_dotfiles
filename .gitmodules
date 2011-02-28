@@ -31,3 +31,6 @@
 [submodule "bundle/flog"]
 	path = bundle/flog
 	url = https://github.com/fousa/vim-flog.git
+[submodule "bundle/ack"]
+	path = bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
