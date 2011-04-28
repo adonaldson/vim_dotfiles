@@ -8,8 +8,11 @@ set hlsearch
 set bs=2
 set tabstop=2
 set shiftwidth=2
-"set guifont=Andale\ Mono:h12
-set guifont=Inconsolata:h14
+" set guifont=Andale\ Mono:h12
+" set guifont=Inconsolata:h14
+" set guifont=Letter\ Gothic\ Std\ Medium:h13
+set guifont=Envy\ Code\ R:h13
+set noantialias
 set expandtab
 runtime! macros/matchit.vim
 " set number
@@ -19,7 +22,8 @@ set wildmenu
 set notitle
 set scrolloff=3
 
-au BufRead,BufNewFile *.js set ft=javascript.jquery
+au! BufRead,BufNewFile *.js set ft=javascript.jquery
+au! BufRead,BufNewFile *.json setfiletype json 
 
 set list
 set listchars=tab::\ ,eol:¬
@@ -76,8 +80,27 @@ if &t_Co > 2 || has("gui_running")
   "colorscheme tictoc
   colorscheme blackboard
   syntax on
+  
+  syntax enable
+  set background=dark
+  colorscheme solarized
 
   set go-=T
+endif
+
+if has('gui_running')
+  "set background=light
+else
+  set background=dark
+endif
+
+"set background=dark
+"colorscheme solarized
+
+
+if has("gui_running")
+  set fuoptions=maxvert,maxhorz
+  set clipboard=unnamed
 endif
 
 map <C-a> :Ack 
