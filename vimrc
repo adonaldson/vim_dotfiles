@@ -21,6 +21,9 @@ set wildmenu
 set notitle
 set scrolloff=3
 
+syntax on
+syntax enable
+
 let g:gist_clip_command = 'pbcopy'
 
 au! BufRead,BufNewFile *.js set ft=javascript.jquery
@@ -86,18 +89,10 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  syntax enable
-
-  set go-=T
-endif
- 
-
 if has("gui_running")
   set fuoptions=maxvert,maxhorz
   set clipboard=unnamed
+  set go-=T " Hide toolbars
 endif
 
 map <C-h> <C-w>h
@@ -149,3 +144,5 @@ colorscheme solarized
 " let g:solarized_diffmode="normal"
 " let g:solarized_menu=1
 
+set mouse=a
+set ttymouse=xterm2
