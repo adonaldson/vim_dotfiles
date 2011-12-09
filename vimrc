@@ -10,8 +10,8 @@ set hlsearch
 set bs=2
 set tabstop=2
 set shiftwidth=2
-set guifont=Envy\ Code\ R:h13
-set noantialias
+set guifont=Envy\ Code\ R:h15
+" set noantialias
 set expandtab
 set wildmode=longest,list
 runtime! macros/matchit.vim
