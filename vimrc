@@ -70,6 +70,17 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
+" Disable arrow keys (aiee)
+
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
+" Hardcore disabling
+noremap h <nop>
+noremap l <nop>
+
 " ------------------------------------------------------------------
 "
 " Filetype specific settings
