@@ -31,7 +31,7 @@ set wildmenu
 set notitle
 
 " Minimum number of lines to keep from the bottom of the screen
-set scrolloff=5
+set scrolloff=3
 
 " tmux settings
 set mouse=a
@@ -39,15 +39,18 @@ set ttymouse=xterm2
 
 " GUI and theme settings
 let g:solarized_visibility="medium"
+let g:solarized_diffmode="high"
 set background=dark
 colorscheme solarized
 
 if has("gui_running")
-  set guifont=Envy\ Code\ R:h16
+  set guifont=Envy\ Code\ R:h18
   set fuoptions=maxvert,maxhorz
-  set clipboard=unnamed
   set go-=T " Hide toolbars
 endif
+
+" Yank and Paste go to system clipboard
+set clipboard=unnamed
 
 " Display hidden characters
 set list
@@ -78,8 +81,8 @@ noremap <Left> <nop>
 noremap <Right> <nop>
 
 " Hardcore disabling
-noremap h <nop>
-noremap l <nop>
+" noremap h <nop>
+" noremap l <nop>
 
 " ------------------------------------------------------------------
 "

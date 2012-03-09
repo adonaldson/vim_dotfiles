@@ -40,3 +40,6 @@
 [submodule "bundle/rake"]
 	path = bundle/rake
 	url = git://github.com/tpope/vim-rake.git
+[submodule "bundle/smartinput"]
+	path = bundle/smartinput
+	url = git://github.com/kana/vim-smartinput.git
