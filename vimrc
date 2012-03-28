@@ -15,8 +15,14 @@ set nocompatible
 " Use line numbers
 set number
 
-" Highlight search results
-set hlsearch
+" (Don't) Highlight search results
+set nohlsearch
+
+" Highlight the current cursor line
+set cursorline
+
+" Highlight 80 character width
+set colorcolumn=80
 
 " When tabbing, insert spaces instead
 set expandtab
