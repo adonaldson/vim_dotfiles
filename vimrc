@@ -46,7 +46,7 @@ set ttymouse=xterm2
 " GUI and theme settings
 let g:solarized_visibility="medium"
 let g:solarized_diffmode="high"
-set background=dark
+set background=light " or dark
 colorscheme solarized
 
 if has("gui_running")
@@ -78,6 +78,9 @@ call togglebg#map("<F5>")
 if has("autocmd")
   filetype plugin indent on
 endif
+
+" Save my left hand some work
+inoremap jk <Esc>
 
 " Disable arrow keys (aiee)
 
