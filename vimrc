@@ -21,9 +21,6 @@ set nohlsearch
 " Highlight the current cursor line
 set cursorline
 
-" Highlight 80 character width
-set colorcolumn=80
-
 " When tabbing, insert spaces instead
 set expandtab
 set bs=2
@@ -46,8 +43,10 @@ set ttymouse=xterm2
 " GUI and theme settings
 let g:solarized_visibility="medium"
 let g:solarized_diffmode="high"
-set background=light " or dark
-colorscheme solarized
+"set background=light " or dark
+"colorscheme solarized
+set background=dark
+colorscheme molokai
 
 if has("gui_running")
   set guifont=Envy\ Code\ R:h18
