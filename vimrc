@@ -76,6 +76,9 @@ call togglebg#map("<F5>")
 " Turn on filetype detection, filetype plugins, indent files
 if has("autocmd")
   filetype plugin indent on
+
+  " Treat ejs files like html
+  au BufRead,BufNewFile *.ejs setfiletype html
 endif
 
 " Save my left hand some work
