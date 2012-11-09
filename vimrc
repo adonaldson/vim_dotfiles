@@ -34,7 +34,10 @@ set wildmenu
 set notitle
 
 " Minimum number of lines to keep from the bottom of the screen
-set scrolloff=3
+set scrolloff=2
+
+" Disable code folding
+set nofoldenable
 
 " tmux settings
 set mouse=a
