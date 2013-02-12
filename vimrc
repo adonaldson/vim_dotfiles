@@ -1,7 +1,5 @@
 ﻿" Init
-
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+execute pathogen#infect()
 
 " ------------------------------------------------------------------
 
@@ -83,9 +81,6 @@ if has("autocmd")
   " Treat ejs files like html
   au BufRead,BufNewFile *.ejs setfiletype html
 endif
-
-" Save my left hand some work
-inoremap jk <Esc>
 
 " Disable arrow keys (aiee)
 

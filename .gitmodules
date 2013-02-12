@@ -50,3 +50,9 @@
 [submodule "bundle/vim-commentary"]
 	path = bundle/vim-commentary
 	url = git://github.com/tpope/vim-commentary.git
+[submodule "bundle/handlebars"]
+	path = bundle/handlebars
+	url = git://github.com/nono/vim-handlebars.git
+[submodule "bundle/vim-haml"]
+	path = bundle/vim-haml
+	url = git://github.com/tpope/vim-haml.git
