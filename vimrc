@@ -13,9 +13,6 @@ set nocompatible
 " Use line numbers
 set number
 
-" Status bar always on
-set laststatus=2
-
 " (Don't) Highlight search results
 set nohlsearch
 
