@@ -13,6 +13,9 @@ set nocompatible
 " Use line numbers
 set number
 
+" Status bar always on
+set laststatus=2
+
 " (Don't) Highlight search results
 set nohlsearch
 
@@ -50,7 +53,7 @@ set background=dark
 colorscheme molokai
 
 if has("gui_running")
-  set guifont=Envy\ Code\ R:h18
+  set guifont=Envy\ Code\ R\ For\ Powerline:h18
   set fuoptions=maxvert,maxhorz
   set go-=T " Hide toolbars
 endif
