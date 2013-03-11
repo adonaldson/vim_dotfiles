@@ -107,6 +107,8 @@ endif
 "
 " Plugins
 "
+" Replace Ack with Ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " TODO: Not sure what this does. Enables % to jump between tag start/ends?
 runtime! macros/matchit.vim
