@@ -56,3 +56,45 @@
 [submodule "bundle/vim-ruby-refactoring"]
 	path = bundle/vim-ruby-refactoring
 	url = git://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "bundle/vim-rbenv"]
+	path = bundle/vim-rbenv
+	url = git://github.com/tpope/vim-rbenv.git
+[submodule "bundle/vim-rake"]
+	path = bundle/vim-rake
+	url = git://github.com/tpope/vim-rake.git
+[submodule "bundle/vim-dispatch"]
+	path = bundle/vim-dispatch
+	url = git://github.com/tpope/vim-dispatch.git
+[submodule "bundle/vim-puppet"]
+	path = bundle/vim-puppet
+	url = git://github.com/rodjek/vim-puppet.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = git@github.com:tpope/vim-markdown.git
+[submodule "bundle/vim-clojure"]
+	path = bundle/vim-clojure
+	url = https://github.com/guns/vim-clojure-static.git
+[submodule "bundle/rainbow_parentheses"]
+	path = bundle/rainbow_parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "bundle/vim-fireplace"]
+	path = bundle/vim-fireplace
+	url = git://github.com/tpope/vim-fireplace.git
+[submodule "bundle/vim-classpath"]
+	path = bundle/vim-classpath
+	url = git://github.com/tpope/vim-classpath.git
+[submodule "bundle/dockerfile"]
+	path = bundle/dockerfile
+	url = git@github.com:honza/dockerfile.vim.git
+[submodule "bundle/go-vim"]
+	path = bundle/go-vim
+	url = https://github.com/uggedal/go-vim.git
+[submodule "bundle/vim-gocode"]
+	path = bundle/vim-gocode
+	url = git@github.com:Blackrush/vim-gocode.git
+[submodule "bundle/investigate"]
+	path = bundle/investigate
+	url = https://github.com/Keithbsmiley/investigate.vim.git
+[submodule "bundle/vim-vinegar"]
+	path = bundle/vim-vinegar
+	url = git://github.com/tpope/vim-vinegar.git

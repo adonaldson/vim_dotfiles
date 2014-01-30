@@ -3,9 +3,9 @@ execute pathogen#infect()
 
 " ------------------------------------------------------------------
 
-" Don't create backup files
-set nobackup
-set nowritebackup
+" Keep backup files out of the way
+set backupdir=~/.tmp
+set directory=~/.tmp
 
 " Don't act like vi
 set nocompatible
@@ -26,6 +26,7 @@ set tabstop=2
 set shiftwidth=2
 
 " When opening a file, tabbing will show all matches
+set wildmode=longest,list,full
 set wildmenu
 
 " Don't set the terminal window title
@@ -37,20 +38,31 @@ set scrolloff=2
 " Disable code folding
 set nofoldenable
 
+" Don't wrap lines
+set nowrap
+
+
+" Always show status bar
+set laststatus=2
+
+" Assume the /g flag on :s substitutions to replace all matches in a line
+" set gdefault
+
 " tmux settings
 set mouse=a
 set ttymouse=xterm2
 
 " GUI and theme settings
-let g:solarized_visibility="medium"
-let g:solarized_diffmode="high"
+"let g:solarized_visibility="medium"
+"let g:solarized_diffmode="high"
 "set background=light " or dark
 "colorscheme solarized
 set background=dark
-colorscheme molokai
+"colorscheme molokai
+colorscheme Tomorrow-Night-Eighties
 
 if has("gui_running")
-  set guifont=Envy\ Code\ R\ For\ Powerline:h18
+  set guifont=Envy\ Code\ R:h18
   set fuoptions=maxvert,maxhorz
   set go-=T " Hide toolbars
 endif
@@ -61,6 +73,11 @@ set clipboard=unnamed
 " Display hidden characters
 set list
 set listchars=tab::\ ,eol:¬
+
+" (Hopefully) removes the delay when hitting esc in insert mode
+set noesckeys
+set ttimeout
+set ttimeoutlen=1
 
 " Syntax highlighting
 " syntax on
@@ -80,7 +97,38 @@ if has("autocmd")
 
   " Treat ejs files like html
   au BufRead,BufNewFile *.ejs setfiletype html
+
+  " Format xml files
+  au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+
+  " Format Dockerfile comments
+  au FileType dockerfile set commentstring=#\ %s
+
+  " When loading text files, wrap them and don't split up words.
+  au BufNewFile,BufRead *.txt setlocal wrap
+  au BufNewFile,BufRead *.txt setlocal lbr
+
+  " Format Go files with horrible big ugly tabs
+  au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 endif
+
+" Merge a tab into a split in the previous window
+function! MergeTabs()
+  if tabpagenr() == 1
+    return
+  endif
+  let bufferName = bufname("%")
+  if tabpagenr("$") == tabpagenr()
+    close!
+  else
+    close!
+    tabprev
+  endif
+  split
+  execute "buffer " . bufferName
+endfunction
+
+nmap <C-W>u :call MergeTabs()<CR>
 
 " Disable arrow keys (aiee)
 
@@ -94,6 +142,31 @@ noremap <Right> <nop>
 " noremap l <nop>
 
 " ------------------------------------------------------------------
+
+vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+map <Leader>bb :!bundle install<cr>
+map <Leader>gac :Gcommit -m -a ""<LEFT>
+map <Leader>gc :Gcommit -m ""<LEFT>
+map <Leader>gs :Gstatus<CR>
+
+map <Leader>o :call RunCurrentLineInTest()<CR>
+map <Leader>t :w<cr>:call RunCurrentTest()<CR>
+
+" Edit another file in the same directory as the current file
+" " uses expression to extract path from current file's path
+map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
+
+map <C-t> <esc>:tabnew<CR>
+map <C-x> <C-w>c
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>m :Rmodel
+
+" ------------------------------------------------------------------
 "
 " Filetype specific settings
 "
@@ -102,6 +175,67 @@ if has("autocmd")
   autocmd! BufRead,BufNewFile *.js set ft=javascript.jquery
   autocmd! BufRead,BufNewFile *.json setfiletype json 
 endif
+
+" ------------------------------------------------------------------
+"
+" Test running stuff, from r00k
+"
+function! RunCurrentTest()
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+  if in_test_file
+    call SetTestFile()
+
+    if match(expand('%'), '\.feature$') != -1
+      call SetTestRunner("!cucumber")
+      exec g:bjo_test_runner g:bjo_test_file
+    elseif match(expand('%'), '_spec\.rb$') != -1
+      call SetTestRunner("!bin/rspec")
+      exec g:bjo_test_runner g:bjo_test_file
+    else
+      call SetTestRunner("!ruby -Itest")
+      exec g:bjo_test_runner g:bjo_test_file
+    endif
+  else
+    exec g:bjo_test_runner g:bjo_test_file
+  endif
+endfunction
+
+function! SetTestRunner(runner)
+  let g:bjo_test_runner=a:runner
+endfunction
+
+function! RunCurrentLineInTest()
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+  if in_test_file
+    call SetTestFileWithLine()
+  end
+
+  exec "!bin/rspec" g:bjo_test_file . ":" . g:bjo_test_file_line
+endfunction
+
+function! SetTestFile()
+  let g:bjo_test_file=@%
+endfunction
+
+function! SetTestFileWithLine()
+  let g:bjo_test_file=@%
+  let g:bjo_test_file_line=line(".")
+endfunction
+
+" ------------------------------------------------------------------
+"
+" Rename current file (thanks Gary Bernhardt, via r00k)
+
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <Leader>n :call RenameFile()<cr>
 
 " ------------------------------------------------------------------
 "
@@ -133,3 +267,15 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
     autocmd BufReadPost fugitive://* set bufhidden=delete
   endif
+
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" Vim Plugin setup for Go
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
