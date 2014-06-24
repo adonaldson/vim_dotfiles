@@ -98,6 +98,9 @@ if has("autocmd")
   " Treat ejs files like html
   au BufRead,BufNewFile *.ejs setfiletype html
 
+  " Treat php files as... php
+  au BufRead,BufNewFile *.php setfiletype php
+
   " Format xml files
   au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
@@ -131,7 +134,6 @@ endfunction
 nmap <C-W>u :call MergeTabs()<CR>
 
 " Disable arrow keys (aiee)
-
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
@@ -139,6 +141,8 @@ noremap <Right> <nop>
 
 " Hardcore disabling
 " noremap h <nop>
+" noremap j <nop>
+" noremap k <nop>
 " noremap l <nop>
 
 " ------------------------------------------------------------------
