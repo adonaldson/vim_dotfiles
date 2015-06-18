@@ -208,6 +208,9 @@ runtime! macros/matchit.vim
 " gist.vim
 let g:gist_clip_command = 'pbcopy'
 
+" ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
 " fugitive.vim
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
